@@ -1,0 +1,10 @@
+{
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "orange_sales",
+      "database_id": "3b9bdd3d-9176-4e6d-9288-ee5d2ebf70b9",
+      "preview_database_id": "DB"
+    }
+  ]
+}
