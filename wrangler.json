@@ -1,24 +1,12 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "huerta-oranges",
-  "main": "./workers/app.ts",
-  "compatibility_date": "2025-04-01",
-  "compatibility_flags": ["nodejs_compat"],
-  "observability": { "enabled": true },
-  "upload_source_maps": true,
-  "vars": {
-    "VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
-  },
-  "routes": [
-    { "pattern": "naranjas.marcospena.es/*", "zone_name": "naranjas.marcospena.es" },
-  ],
-  "workers_dev": true,
+  "compatibility_date": "2025-12-15",    
   "d1_databases": [
     {
-      "binding": "DB",
+      "binding": "orange_sales",
       "database_name": "orange_sales",
-      "database_id": "3b9bdd3d-9176-4e6d-9288-ee5d2ebf70b9",
-      "preview_database_id": "DB"
+      "database_id": "3b9bdd3d-9176-4e6d-9288-ee5d2ebf70b9"
     }
   ]
 }
