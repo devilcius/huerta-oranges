@@ -26,7 +26,7 @@ export default function NewBuyerPage() {
       style={{ display: "grid", gap: 12, maxWidth: 420 }}
     >
       <div style={{ display: "grid", gap: 6 }}>
-        <label>Buyer name</label>
+        <label>Nombre del comprador</label>
         <input
           value={buyerName}
           onChange={(e) => setBuyerName(e.target.value)}
@@ -35,7 +35,7 @@ export default function NewBuyerPage() {
       </div>
 
       <div style={{ display: "grid", gap: 6 }}>
-        <label>Bags of 10 (€16)</label>
+        <label>Bolsas de 10 (€16)</label>
         <input
           type="number"
           min="0"
@@ -46,7 +46,7 @@ export default function NewBuyerPage() {
       </div>
 
       <div style={{ display: "grid", gap: 6 }}>
-        <label>Bags of 20 (€30)</label>
+        <label>Bolsas de 20 (€30)</label>
         <input
           type="number"
           min="0"
@@ -57,7 +57,7 @@ export default function NewBuyerPage() {
       </div>
 
       <button type="submit" style={{ padding: 10 }}>
-        Create buyer
+        Crear comprador
       </button>
     </form>
   );

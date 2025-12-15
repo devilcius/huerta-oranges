@@ -44,10 +44,10 @@ export default function BuyerDetailPage() {
     return (
       <div className="space-y-3">
         <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-rose-800 text-sm">
-          Failed to load: {String(loadError.message ?? loadError)}
+          Error al cargar: {String(loadError.message ?? loadError)}
         </div>
         <Link className="text-sm text-slate-700 hover:underline" to="/">
-          Back to list
+          Volver a la lista
         </Link>
       </div>
     );
@@ -56,9 +56,9 @@ export default function BuyerDetailPage() {
   if (!buyer) {
     return (
       <div className="space-y-2">
-        <p className="text-slate-700">{isLoading ? "Loading…" : "Buyer not found."}</p>
+        <p className="text-slate-700">{isLoading ? "Cargando…" : "Comprador no encontrado."}</p>
         <Link className="text-sm text-slate-700 hover:underline" to="/">
-          Back to list
+          Volver a la lista
         </Link>
       </div>
     );
@@ -96,43 +96,43 @@ export default function BuyerDetailPage() {
         </div>
 
         <Link className="text-sm text-slate-700 hover:underline" to="/">
-          Back to list
+          Volver a la lista
         </Link>
       </div>
 
       {/* Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-600">Bags of 10</div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-slate-600">Bolsas de 10</div>
           <div className="mt-1 text-2xl font-semibold">{bagsOfTen}</div>
-          <div className="mt-1 text-sm text-slate-600">€16 each</div>
+          <div className="mt-1 text-sm text-slate-600">€16 cada una</div>
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-600">Bags of 20</div>
+          <div className="text-xs font-semibold uppercase tracking-wide text-slate-600">Bolsas de 20</div>
           <div className="mt-1 text-2xl font-semibold">{bagsOfTwenty}</div>
-          <div className="mt-1 text-sm text-slate-600">€30 each</div>
+          <div className="mt-1 text-sm text-slate-600">€30 cada una</div>
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-slate-900 p-4 text-white">
           <div className="text-xs font-semibold uppercase tracking-wide text-white/70">Total</div>
           <div className="mt-1 text-2xl font-semibold">€{totalPrice}</div>
-          <div className="mt-1 text-sm text-white/70">Calculated from bag counts</div>
+          <div className="mt-1 text-sm text-white/70">Calculado a partir del número de bolsas</div>
         </div>
       </div>
 
       {/* Edit card */}
       <div className="rounded-2xl border border-slate-200 p-4 sm:p-5 space-y-4">
-        <div className="text-sm font-semibold text-slate-900">Order details</div>
+        <div className="text-sm font-semibold text-slate-900">Detalles del pedido</div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="sm:col-span-1">
-            <label className="block text-sm font-medium text-slate-700">Buyer name</label>
+            <label className="block text-sm font-medium text-slate-700">Nombre del comprador</label>
             <input value={buyerName} onChange={(e) => setBuyerName(e.target.value)} className={`${inputClass} mt-1`} />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700">Bags of 10 (€16)</label>
+            <label className="block text-sm font-medium text-slate-700">Bolsas de 10 (€16)</label>
             <input
               type="number"
               min="0"
@@ -143,7 +143,7 @@ export default function BuyerDetailPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700">Bags of 20 (€30)</label>
+            <label className="block text-sm font-medium text-slate-700">Bolsas de 20 (€30)</label>
             <input
               type="number"
               min="0"
@@ -173,7 +173,7 @@ export default function BuyerDetailPage() {
                 checked={buyer.orangesPaid}
                 onChange={(e) => updateBuyer(buyer.id, { orangesPaid: e.target.checked })}
               />
-              Oranges paid
+              Naranjas pagadas
             </label>
           </div>
 
@@ -188,7 +188,7 @@ export default function BuyerDetailPage() {
               }}
               disabled={!hasUnsavedChanges || isSaving}
             >
-              Reset
+              Restablecer
             </button>
 
             <button type="button" className={buttonClass} onClick={saveEdits} disabled={!hasUnsavedChanges || isSaving}>
@@ -208,7 +208,7 @@ export default function BuyerDetailPage() {
             navigate("/");
           }}
         >
-          Delete buyer
+          Borrar comprador
         </button>
       </div>
     </div>
