@@ -3,6 +3,7 @@ import BuyersListPage from "./pages/BuyersListPage";
 import BuyerDetailPage from "./pages/BuyerDetailPage";
 import NewBuyerPage from "./pages/NewBuyerPage";
 import SummaryPage from "./pages/SummaryPage";
+import ImportCsvPage from "./pages/ImportCsvPage";
 
 function TopLink({ to, children }) {
   return (
@@ -41,6 +42,7 @@ export default function App() {
               <TopLink to="/">Compradores</TopLink>
               <TopLink to="/buyers/new">Nuevo comprador</TopLink>
               <TopLink to="/summary">Resumen</TopLink>
+              <TopLink to="/import-csv">Importar CSV</TopLink>
             </nav>
           </div>
         </header>
@@ -51,6 +53,7 @@ export default function App() {
             <Route path="/buyers/new" element={<NewBuyerPage />} />
             <Route path="/buyers/:buyerId" element={<BuyerDetailPage />} />
             <Route path="/summary" element={<SummaryPage />} />
+            <Route path="/import-csv" element={<ImportCsvPage />} />
           </Routes>
         </main>
 
