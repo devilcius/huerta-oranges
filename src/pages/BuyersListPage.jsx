@@ -93,7 +93,7 @@ export default function BuyersListPage() {
 
       {buyers.length === 0 ? (
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-          <div className="text-slate-900 font-medium">No buyers yet</div>
+          <div className="text-slate-900 font-medium">No hay compradores aún</div>
           <div className="mt-1 text-sm text-slate-600">
             Crea tu primer comprador para empezar a registrar bolsas, recogida y pagos.
           </div>
