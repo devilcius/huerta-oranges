@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useBuyers } from "../state/useBuyers";
+import { buttonClass } from "../ui/ui";
 
 function StatusPill({ ok, labelOk, labelNo }) {
   return (
@@ -21,9 +22,9 @@ function Chip({ active, children, onClick }) {
       type="button"
       onClick={onClick}
       className={[
-        "px-3 py-1.5 rounded-full text-sm border transition",
+        "px-3 py-1.5 rounded-full text-sm font-medium transition border",
         active
-          ? "bg-slate-900 text-white border-slate-900"
+          ? "bg-brand-100 text-brand-700 border-brand-300"
           : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50",
       ].join(" ")}
     >
@@ -31,6 +32,7 @@ function Chip({ active, children, onClick }) {
     </button>
   );
 }
+
 
 export default function BuyersListPage() {
   const [nameFilter, setNameFilter] = useState("");
@@ -100,7 +102,7 @@ export default function BuyersListPage() {
           <div className="mt-4">
             <Link
               to="/buyers/new"
-              className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-2 text-white text-sm font-medium hover:bg-slate-800"
+              className={buttonClass}
             >
               Nuevo comprador
             </Link>

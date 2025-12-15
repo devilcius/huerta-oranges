@@ -51,21 +51,21 @@ export default function SummaryPage() {
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <SummaryCard
-          label="Total kilos booked"
+          label="Total kilos reservados"
           value={`${summary.totalKilos} kg`}
-          footer="Based on all buyers"
+          footer="Basado en todos los compradores"
         />
 
         <SummaryCard
-          label="Total paid"
-          value={`€${summary.totalPaid}`}
-          footer="Payments already completed"
+          label="Total pagado"
+          value={`${summary.totalPaid} €`}
+          footer="Pagos ya realizados"
         />
 
         <SummaryCard
-          label="Total to be paid"
-          value={`€${summary.totalToBePaid}`}
-          footer="Pending payments"
+          label="Total por pagar"
+          value={`${summary.totalToBePaid} €`}
+          footer="Pagos pendientes"
         />
       </div>
     </div>

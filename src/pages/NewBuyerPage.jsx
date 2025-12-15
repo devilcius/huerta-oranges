@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBuyers } from "../state/useBuyers";
+import { buttonClass } from "../ui/ui";
 
 export default function NewBuyerPage() {
   const { addBuyer } = useBuyers();
@@ -56,7 +57,7 @@ export default function NewBuyerPage() {
         />
       </div>
 
-      <button type="submit" style={{ padding: 10 }}>
+      <button type="submit" className={buttonClass}>
         Crear comprador
       </button>
     </form>

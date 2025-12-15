@@ -11,7 +11,9 @@ function TopLink({ to, children }) {
       className={({ isActive }) =>
         [
           "px-4 py-2 rounded-xl text-sm font-medium transition whitespace-nowrap",
-          isActive ? "bg-slate-900 text-white shadow-sm" : "text-slate-700 hover:bg-slate-100",
+          isActive
+            ? "bg-brand-500 text-white shadow-sm"
+            : "text-slate-700 hover:bg-slate-100",
         ].join(" ")
       }
     >
@@ -27,8 +29,12 @@ export default function App() {
         <header className="mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Naranjas de la huerta</h1>
-              <p className="mt-1 text-sm text-slate-600">Bolsas: 10 (€16) · 20 (€30)</p>
+              <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+                Naranjas de la huerta
+              </h1>
+              <p className="mt-1 text-sm text-slate-600">
+                Bolsas: 10 (€16) · 20 (€30)
+              </p>
             </div>
 
             <nav className="flex flex-wrap gap-2 bg-white border border-slate-200 rounded-2xl p-2 shadow-sm">
@@ -49,7 +55,8 @@ export default function App() {
         </main>
 
         <footer className="mt-6 text-xs text-slate-500">
-          Base de datos compartida (Cloudflare D1). Los cambios son visibles en todos los navegadores.
+          Base de datos compartida (Cloudflare D1). Los cambios son visibles en
+          todos los navegadores.
         </footer>
       </div>
     </div>
