@@ -29,13 +29,21 @@ export default function App() {
       <div className="max-w-5xl mx-auto px-4 py-6">
         <header className="mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
-                Naranjas de la huerta
-              </h1>
-              <p className="mt-1 text-sm text-slate-600">
-                Bolsas: 10 (€16) · 20 (€30)
-              </p>
+            <div className="flex items-center gap-3">
+              <img
+                src="/orange.svg"
+                alt="Naranja"
+                className="h-16 w-16"
+              />
+
+              <div>
+                <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+                  Naranjas de la huerta
+                </h1>
+                <p className="mt-1 text-sm text-slate-600">
+                  Bolsas: 10 (€16) · 20 (€30)
+                </p>
+              </div>
             </div>
 
             <nav className="flex flex-wrap gap-2 bg-white border border-slate-200 rounded-2xl p-2 shadow-sm">

@@ -4,7 +4,7 @@
   "compatibility_date": "2025-12-15",    
   "d1_databases": [
     {
-      "binding": "orange_sales",
+      "binding": "DB",
       "database_name": "orange_sales",
       "database_id": "3b9bdd3d-9176-4e6d-9288-ee5d2ebf70b9"
     }

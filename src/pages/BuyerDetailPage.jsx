@@ -245,12 +245,12 @@ export default function BuyerDetailPage() {
           <div className="mt-1 text-sm text-slate-600">30 € cada una</div>
         </div>
 
-        <div className="rounded-2xl border border-brand-200 bg-brand-50 p-4">
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-600">
+        <div className="rounded-2xl border border-brand-200 bg-brand-500 p-4">
+          <div className="text-xs font-semibold uppercase tracking-wide text-white">
             Total
           </div>
-          <div className="mt-1 text-2xl font-semibold text-slate-900">€{totalPrice}</div>
-          <div className="mt-1 text-sm text-slate-600">
+          <div className="mt-1 text-2xl font-semibold text-white">€{totalPrice}</div>
+          <div className="mt-1 text-sm text-white">
             Calculado a partir del número de bolsas
           </div>
         </div>
