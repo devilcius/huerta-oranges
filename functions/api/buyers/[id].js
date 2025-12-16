@@ -15,7 +15,7 @@ export async function onRequest(context) {
 
     const patchPaidMethod =  body.paidMethod != null ? normalizePaidMethod(body.paidMethod) : null;
 
-    await env.orange_sales.prepare(
+    await env.DB.prepare(
       `
       UPDATE buyers SET
         buyer_name      = COALESCE(?2, buyer_name),
@@ -30,7 +30,7 @@ export async function onRequest(context) {
       .bind(buyerId, patchBuyerName, patchBagsOfTen, patchBagsOfTwenty, patchPicked, patchPaid, patchPaidMethod)
       .run();
 
-    const row = await env.orange_sales.prepare(
+    const row = await env.DB.prepare(
       `
       SELECT
         id,
@@ -53,7 +53,7 @@ export async function onRequest(context) {
   }
 
   if (request.method === "DELETE") {
-    await env.orange_sales.prepare(`DELETE FROM buyers WHERE id = ?1`).bind(buyerId).run();
+    await env.DB.prepare(`DELETE FROM buyers WHERE id = ?1`).bind(buyerId).run();
     return new Response(null, { status: 204 });
   }
 

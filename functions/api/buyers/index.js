@@ -5,7 +5,7 @@ export async function onRequest(context) {
     const url = new URL(request.url);
     const name = (url.searchParams.get("name") ?? "").trim();
 
-    const { results } = await env.orange_sales.prepare(
+    const { results } = await env.DB.prepare(
       `
       SELECT
         id,
@@ -37,7 +37,7 @@ export async function onRequest(context) {
     const id = crypto.randomUUID();
     const createdAtIso = new Date().toISOString();
 
-    await env.orange_sales.prepare(
+    await env.DB.prepare(
       `
         INSERT INTO buyers (id, buyer_name, bags_of_ten, bags_of_twenty, oranges_picked, oranges_paid, paid_method, created_at_iso)
         VALUES (?1, ?2, ?3, ?4, 0, 0, NULL, ?5)
