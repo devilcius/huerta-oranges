@@ -90,8 +90,8 @@ export default function BuyerDetailPage() {
         <div>
           <h2 className="text-xl font-semibold tracking-tight">{buyer.buyerName || "(no name)"}</h2>
           <div className="mt-2 flex gap-2">
-            <StatusPill ok={buyer.orangesPicked} labelOk="Picked" labelNo="Not picked" />
-            <StatusPill ok={buyer.orangesPaid} labelOk="Paid" labelNo="Not paid" />
+            <StatusPill ok={buyer.orangesPicked} labelOk="Recogido" labelNo="No recogido" />
+            <StatusPill ok={buyer.orangesPaid} labelOk="Pagado" labelNo="No pagado" />
           </div>
         </div>
 
@@ -163,7 +163,7 @@ export default function BuyerDetailPage() {
                 checked={buyer.orangesPicked}
                 onChange={(e) => updateBuyer(buyer.id, { orangesPicked: e.target.checked })}
               />
-              Oranges picked
+              Naranjas recogidas
             </label>
 
             <label className="inline-flex items-center gap-2 text-sm text-slate-700">
