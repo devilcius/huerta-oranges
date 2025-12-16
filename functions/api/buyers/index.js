@@ -5,7 +5,7 @@ export async function onRequest(context) {
     const url = new URL(request.url);
     const name = (url.searchParams.get("name") ?? "").trim();
 
-    const { results } = await env.DB.prepare(
+    const { results } = await env.orange_sales.prepare(
       `
       SELECT
         id,
@@ -14,6 +14,7 @@ export async function onRequest(context) {
         bags_of_twenty as bagsOfTwenty,
         oranges_picked as orangesPicked,
         oranges_paid as orangesPaid,
+        paid_method as paidMethod,
         created_at_iso as createdAtIso
       FROM buyers
       WHERE (?1 = '' OR LOWER(buyer_name) LIKE '%' || LOWER(?1) || '%')
@@ -36,10 +37,10 @@ export async function onRequest(context) {
     const id = crypto.randomUUID();
     const createdAtIso = new Date().toISOString();
 
-    await env.DB.prepare(
+    await env.orange_sales.prepare(
       `
-      INSERT INTO buyers (id, buyer_name, bags_of_ten, bags_of_twenty, oranges_picked, oranges_paid, created_at_iso)
-      VALUES (?1, ?2, ?3, ?4, 0, 0, ?5)
+        INSERT INTO buyers (id, buyer_name, bags_of_ten, bags_of_twenty, oranges_picked, oranges_paid, paid_method, created_at_iso)
+        VALUES (?1, ?2, ?3, ?4, 0, 0, NULL, ?5)
       `
     )
       .bind(id, buyerName, bagsOfTen, bagsOfTwenty, createdAtIso)
@@ -53,6 +54,7 @@ export async function onRequest(context) {
         bagsOfTwenty,
         orangesPicked: 0,
         orangesPaid: 0,
+        paidMethod: null,
         createdAtIso,
       },
       201

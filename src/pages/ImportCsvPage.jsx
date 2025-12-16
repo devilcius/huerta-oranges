@@ -45,7 +45,7 @@ export default function ImportCsvPage() {
         createdCount += 1;
       }
 
-      setResultMessage(`Imported ${createdCount} buyers.`);
+      setResultMessage(`Importados ${createdCount} compradores.`);
     } catch (error) {
       setErrorMessage(String(error.message ?? error));
     } finally {

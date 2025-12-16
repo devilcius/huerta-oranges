@@ -1,0 +1,1 @@
+ALTER TABLE buyers ADD COLUMN paid_method TEXT NULL;

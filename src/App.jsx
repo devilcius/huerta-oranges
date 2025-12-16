@@ -58,8 +58,7 @@ export default function App() {
         </main>
 
         <footer className="mt-6 text-xs text-slate-500">
-          Base de datos compartida (Cloudflare D1). Los cambios son visibles en
-          todos los navegadores.
+          Hecho con mucho amor por M&M Soluciones Web.
         </footer>
       </div>
     </div>

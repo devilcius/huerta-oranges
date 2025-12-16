@@ -1,32 +1,30 @@
-const PRICE_BAG_10 = 16;
-const PRICE_BAG_20 = 30;
-
-const KG_BAG_10 = 10;
-const KG_BAG_20 = 20;
-
 export function computeSummary(buyers) {
   let totalKilos = 0;
   let totalPaid = 0;
   let totalToBePaid = 0;
 
+  let totalPaidBizum = 0;
+  let totalPaidCash = 0;
+
   for (const buyer of buyers) {
     const bags10 = Number(buyer.bagsOfTen) || 0;
     const bags20 = Number(buyer.bagsOfTwenty) || 0;
 
-    const kilos =
-      bags10 * KG_BAG_10 +
-      bags20 * KG_BAG_20;
-
-    const amount =
-      bags10 * PRICE_BAG_10 +
-      bags20 * PRICE_BAG_20;
+    const kilos = bags10 * 10 + bags20 * 20;
+    const euros = bags10 * 16 + bags20 * 30;
 
     totalKilos += kilos;
 
     if (buyer.orangesPaid) {
-      totalPaid += amount;
+      totalPaid += euros;
+
+      if (buyer.paidMethod === "bizum") {
+        totalPaidBizum += euros;
+      } else if (buyer.paidMethod === "cash") {
+        totalPaidCash += euros;
+      }
     } else {
-      totalToBePaid += amount;
+      totalToBePaid += euros;
     }
   }
 
@@ -34,5 +32,7 @@ export function computeSummary(buyers) {
     totalKilos,
     totalPaid,
     totalToBePaid,
+    totalPaidBizum,
+    totalPaidCash,
   };
 }

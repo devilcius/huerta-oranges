@@ -26,6 +26,7 @@ export function useBuyers({ nameFilter } = {}) {
           // D1 returns ints (0/1) for booleans
           orangesPicked: Boolean(row.orangesPicked),
           orangesPaid: Boolean(row.orangesPaid),
+          paidMethod: row.paidMethod ?? null,
         }))
       );
     } catch (error) {

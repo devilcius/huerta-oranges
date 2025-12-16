@@ -2,9 +2,16 @@ import { useMemo } from "react";
 import { useBuyers } from "../state/useBuyers";
 import { computeSummary } from "../domain/summary";
 
-function SummaryCard({ label, value, footer }) {
+function SummaryCard({ label, value, footer, accent = false }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div
+      className={[
+        "rounded-2xl border p-5 shadow-sm",
+        accent
+          ? "border-brand-200 bg-brand-50"
+          : "border-slate-200 bg-white",
+      ].join(" ")}
+    >
       <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
         {label}
       </div>
@@ -39,21 +46,23 @@ export default function SummaryPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <h2 className="text-xl font-semibold tracking-tight">
           Resumen
         </h2>
         <p className="mt-1 text-sm text-slate-600">
-          Resumen de naranjas reservadas y pagos
+          Resumen de naranjas reservadas y estado de los pagos
         </p>
       </div>
 
+      {/* Totales generales */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <SummaryCard
           label="Total kilos reservados"
           value={`${summary.totalKilos} kg`}
           footer="Basado en todos los compradores"
+          accent
         />
 
         <SummaryCard
@@ -67,6 +76,30 @@ export default function SummaryPage() {
           value={`${summary.totalToBePaid} €`}
           footer="Pagos pendientes"
         />
+      </div>
+
+      {/* Desglose de pagos */}
+      <div>
+        <h3 className="text-lg font-semibold tracking-tight">
+          Desglose de pagos realizados
+        </h3>
+        <p className="mt-1 text-sm text-slate-600">
+          Según el método de pago utilizado
+        </p>
+
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <SummaryCard
+            label="Pagado por Bizum"
+            value={`${summary.totalPaidBizum} €`}
+            footer="Importe cobrado mediante Bizum"
+          />
+
+          <SummaryCard
+            label="Pagado en efectivo"
+            value={`${summary.totalPaidCash} €`}
+            footer="Importe cobrado en metálico"
+          />
+        </div>
       </div>
     </div>
   );

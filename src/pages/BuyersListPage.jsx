@@ -102,13 +102,13 @@ export default function BuyersListPage() {
           active={statusFilter === "needs_picking"}
           onClick={() => setStatusFilter("needs_picking")}
         >
-          Necesita recolección ({countNeedsPicking})
+          Por recoger ({countNeedsPicking})
         </Chip>
         <Chip
           active={statusFilter === "needs_payment"}
           onClick={() => setStatusFilter("needs_payment")}
         >
-          Necesita pago ({countNeedsPayment})
+          Por pagar ({countNeedsPayment})
         </Chip>
       </div>
 
