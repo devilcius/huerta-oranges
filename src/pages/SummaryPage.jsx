@@ -77,6 +77,29 @@ export default function SummaryPage() {
           footer="Pagos pendientes"
         />
       </div>
+      {/* Desglose de tipos de bolsa */}
+      <div>
+        <h3 className="text-lg font-semibold tracking-tight">
+          Desglose por tipo de bolsa
+        </h3>
+        <p className="mt-1 text-sm text-slate-600">
+          Cantidad de bolsas reservadas según su tamaño
+        </p>
+
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <SummaryCard
+            label="Bolsas de 10 kg"
+            value={`${summary.total10kgBags} bolsas`}
+            footer="Cantidad de bolsas de 10 kg reservadas"
+          />
+
+          <SummaryCard
+            label="Bolsas de 20 kg"
+            value={`${summary.total20kgBags} bolsas`}
+            footer="Cantidad de bolsas de 20 kg reservadas"
+          />
+        </div>
+      </div>
 
       {/* Desglose de pagos */}
       <div>

@@ -6,6 +6,9 @@ export function computeSummary(buyers) {
   let totalPaidBizum = 0;
   let totalPaidCash = 0;
 
+  let total10kgBags = 0;
+  let total20kgBags = 0;
+
   for (const buyer of buyers) {
     const bags10 = Number(buyer.bagsOfTen) || 0;
     const bags20 = Number(buyer.bagsOfTwenty) || 0;
@@ -14,6 +17,8 @@ export function computeSummary(buyers) {
     const euros = bags10 * 16 + bags20 * 30;
 
     totalKilos += kilos;
+    total10kgBags += bags10;
+    total20kgBags += bags20;
 
     if (buyer.orangesPaid) {
       totalPaid += euros;
@@ -34,5 +39,7 @@ export function computeSummary(buyers) {
     totalToBePaid,
     totalPaidBizum,
     totalPaidCash,
+    total10kgBags,
+    total20kgBags,
   };
 }

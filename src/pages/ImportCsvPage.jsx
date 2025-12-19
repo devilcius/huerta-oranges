@@ -79,7 +79,7 @@ export default function ImportCsvPage() {
       <textarea
         value={csvText}
         onChange={(e) => setCsvText(e.target.value)}
-        placeholder="Paste your CSV here…"
+        placeholder="Copia aquí tu CSV…"
         className="w-full min-h-[220px] rounded-xl border border-slate-200 p-3 font-mono text-xs outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500"
       />
 
