@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useBuyers } from "../state/useBuyers";
+import { buyersToCsv, downloadTextFile } from "../export/exportBuyersCsv";
 import { buttonClass, secondaryButtonClass } from "../ui/ui";
 
 function StatusPill({ ok, labelOk, labelNo }) {
@@ -67,6 +68,24 @@ export default function BuyersListPage() {
 
   return (
     <div className="space-y-4">
+      {/* Export button */}
+      <div className="flex justify-end">
+        <button
+          type="button"
+          className={secondaryButtonClass}
+          onClick={() => {
+            const csv = buyersToCsv(visibleBuyers); // or buyers (all)
+            const date = new Date().toISOString().slice(0, 10);
+            downloadTextFile({
+              filename: `naranjas_${date}.csv`,
+              text: csv,
+              mimeType: "text/csv;charset=utf-8",
+            });
+          }}
+        >
+          Exportar litado
+        </button>
+      </div>
       {/* Filters */}
       <div className="flex flex-col sm:flex-row sm:items-end gap-3">
         <div className="flex-1">
