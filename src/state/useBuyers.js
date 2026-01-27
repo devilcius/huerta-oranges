@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { createBuyer, deleteBuyer, fetchBuyers, patchBuyer } from "../api/buyersApi";
+import { createBuyer, deleteAllBuyers, deleteBuyer, fetchBuyers, patchBuyer } from "../api/buyersApi";
 
 export function useBuyers({ nameFilter } = {}) {
   const [buyers, setBuyers] = useState([]);
@@ -91,5 +91,27 @@ export function useBuyers({ nameFilter } = {}) {
     }
   }
 
-  return { buyers, buyersById, addBuyer, updateBuyer, removeBuyer, refresh, isLoading, loadError };
+  async function clearAllBuyers() {
+    setBuyers([]);
+
+    try {
+      await deleteAllBuyers();
+      await refresh();
+    } catch (error) {
+      await refresh();
+      throw error;
+    }
+  }
+
+  return {
+    buyers,
+    buyersById,
+    addBuyer,
+    updateBuyer,
+    removeBuyer,
+    clearAllBuyers,
+    refresh,
+    isLoading,
+    loadError,
+  };
 }

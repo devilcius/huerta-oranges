@@ -61,6 +61,11 @@ export async function onRequest(context) {
     );
   }
 
+  if (request.method === "DELETE") {
+    await env.DB.prepare("DELETE FROM buyers").run();
+    return new Response(null, { status: 204 });
+  }
+
   return new Response("Method Not Allowed", { status: 405 });
 }
 

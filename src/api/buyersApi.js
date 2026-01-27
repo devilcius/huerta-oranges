@@ -38,3 +38,7 @@ export function patchBuyer(buyerId, patch) {
 export function deleteBuyer(buyerId) {
   return requestJson(`/api/buyers/${buyerId}`, { method: "DELETE" });
 }
+
+export function deleteAllBuyers() {
+  return requestJson("/api/buyers", { method: "DELETE" });
+}

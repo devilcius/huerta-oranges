@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useBuyers } from "../state/useBuyers";
 import { computeSummary } from "../domain/summary";
+import { dangerButtonClass } from "../ui/ui";
 
 function SummaryCard({ label, value, footer, accent = false }) {
   return (
@@ -26,7 +27,8 @@ function SummaryCard({ label, value, footer, accent = false }) {
 }
 
 export default function SummaryPage() {
-  const { buyers, isLoading, loadError } = useBuyers();
+  const { buyers, isLoading, loadError, clearAllBuyers } = useBuyers();
+  const [isClearing, setIsClearing] = useState(false);
 
   const summary = useMemo(
     () => computeSummary(buyers),
@@ -123,6 +125,40 @@ export default function SummaryPage() {
             footer="Importe cobrado en metálico"
           />
         </div>
+      </div>
+
+      <div className="pt-4 border-t border-slate-200 flex items-center justify-between gap-4">
+        <div>
+          <h3 className="text-sm font-semibold text-slate-900">
+            Zona peligrosa
+          </h3>
+          <p className="text-xs text-slate-500">
+            Vacía toda la base de datos de compradores.
+          </p>
+        </div>
+        <button
+          type="button"
+          className={dangerButtonClass}
+          disabled={isClearing}
+          onClick={async () => {
+            const confirmed = window.confirm(
+              "¿Seguro que quieres borrar TODOS los compradores? Esta acción no se puede deshacer."
+            );
+            if (!confirmed) return;
+            setIsClearing(true);
+            try {
+              await clearAllBuyers();
+            } catch (error) {
+              window.alert(
+                `No se pudo vaciar la base de datos: ${String(error?.message ?? error)}`
+              );
+            } finally {
+              setIsClearing(false);
+            }
+          }}
+        >
+          Vaciar base de datos
+        </button>
       </div>
     </div>
   );
