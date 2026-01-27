@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { parseBuyersCsv } from "../import/parseBuyersCsv";
 import { createBuyer } from "../api/buyersApi";
 import { buttonClass, secondaryButtonClass } from "../ui/ui";
 
 export default function ImportCsvPage() {
+  const navigate = useNavigate();
   const [csvText, setCsvText] = useState("");
   const [isImporting, setIsImporting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -45,7 +47,10 @@ export default function ImportCsvPage() {
         createdCount += 1;
       }
 
-      setResultMessage(`Importados ${createdCount} compradores.`);
+      const message = `Importados ${createdCount} compradores.`;
+      setResultMessage(message);
+      window.alert(message);
+      navigate("/buyers");
     } catch (error) {
       setErrorMessage(String(error.message ?? error));
     } finally {

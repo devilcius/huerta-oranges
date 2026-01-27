@@ -58,6 +58,7 @@ export default function App() {
         <main className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4 sm:p-6">
           <Routes>
             <Route path="/" element={<BuyersListPage />} />
+            <Route path="/buyers" element={<BuyersListPage />} />
             <Route path="/buyers/new" element={<NewBuyerPage />} />
             <Route path="/buyers/:buyerId" element={<BuyerDetailPage />} />
             <Route path="/summary" element={<SummaryPage />} />
