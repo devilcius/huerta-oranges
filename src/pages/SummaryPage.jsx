@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useBuyers } from "../state/useBuyers";
 import { computeSummary } from "../domain/summary";
 import { dangerButtonClass } from "../ui/ui";
+import { useExpenses } from "../state/useExpenses";
 
 function SummaryCard({ label, value, footer, accent = false }) {
   return (
@@ -28,11 +29,16 @@ function SummaryCard({ label, value, footer, accent = false }) {
 
 export default function SummaryPage() {
   const { buyers, isLoading, loadError, clearAllBuyers } = useBuyers();
+  const {
+    expenses,
+    isLoading: isLoadingExpenses,
+    loadError: expensesLoadError,
+  } = useExpenses();
   const [isClearing, setIsClearing] = useState(false);
 
   const summary = useMemo(
-    () => computeSummary(buyers),
-    [buyers]
+    () => computeSummary(buyers, expenses),
+    [buyers, expenses]
   );
 
   if (loadError) {
@@ -43,7 +49,15 @@ export default function SummaryPage() {
     );
   }
 
-  if (isLoading && buyers.length === 0) {
+  if (expensesLoadError) {
+    return (
+      <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-rose-800 text-sm">
+        Error al cargar gastos: {String(expensesLoadError.message ?? expensesLoadError)}
+      </div>
+    );
+  }
+
+  if ((isLoading && buyers.length === 0) || (isLoadingExpenses && expenses.length === 0)) {
     return <div className="text-slate-600">Cargando…</div>;
   }
 
@@ -123,6 +137,34 @@ export default function SummaryPage() {
             label="Pagado en efectivo"
             value={`${summary.totalPaidCash} €`}
             footer="Importe cobrado en metálico"
+          />
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold tracking-tight">
+          Balance
+        </h3>
+        <p className="mt-1 text-sm text-slate-600">
+          Ingresos cobrados menos gastos registrados.
+        </p>
+
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <SummaryCard
+            label="Ingresos cobrados"
+            value={`${summary.totalPaid} €`}
+            footer="Suma de compradores marcados como pagados"
+          />
+          <SummaryCard
+            label="Gastos"
+            value={`${summary.totalExpenses} €`}
+            footer="Suma de todos los gastos registrados"
+          />
+          <SummaryCard
+            label="Balance neto"
+            value={`${summary.balance} €`}
+            footer={summary.balance >= 0 ? "Balance positivo" : "Balance negativo"}
+            accent={summary.balance >= 0}
           />
         </div>
       </div>

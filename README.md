@@ -29,6 +29,11 @@ The application is built with **React + Vite** and deployed on **Cloudflare Page
   * Needs picking
   * Needs payment
 * Shared database (multiple users, different browsers)
+* Expense management:
+
+  * Add expenses with description and amount
+  * View expense history
+  * Balance in summary (paid income - expenses)
 
 ---
 

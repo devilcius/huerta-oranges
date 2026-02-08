@@ -1,4 +1,4 @@
-export function computeSummary(buyers) {
+export function computeSummary(buyers, expenses = []) {
   let totalKilos = 0;
   let totalPaid = 0;
   let totalToBePaid = 0;
@@ -8,6 +8,7 @@ export function computeSummary(buyers) {
 
   let total10kgBags = 0;
   let total20kgBags = 0;
+  let totalExpenses = 0;
 
   for (const buyer of buyers) {
     const bags10 = Number(buyer.bagsOfTen) || 0;
@@ -33,6 +34,12 @@ export function computeSummary(buyers) {
     }
   }
 
+  for (const expense of expenses) {
+    totalExpenses += (Number(expense.amountCents) || 0) / 100;
+  }
+
+  const balance = totalPaid - totalExpenses;
+
   return {
     totalKilos,
     totalPaid,
@@ -41,5 +48,7 @@ export function computeSummary(buyers) {
     totalPaidCash,
     total10kgBags,
     total20kgBags,
+    totalExpenses,
+    balance,
   };
 }
